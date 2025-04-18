@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # Configure Gemini API
-genai.configure(api_key=os.getenv("AIzaSyDg14EMQxeHdTz6NrjqhHRyYcaZDULYOyw"))
+genai.configure(api_key=os.getenv("you dont get my api key"))
 gemini_model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 @app.post("/predict")
