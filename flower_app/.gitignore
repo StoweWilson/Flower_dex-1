@@ -57,3 +57,6 @@ build/
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
+
+flower_app/venv/lib/python3.12/site-packages/torch/lib/libtorch_cpu.dylib
+File flower_app/flower_ai_backend/fine_tuned_resnet50.pth
