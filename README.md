@@ -8,45 +8,45 @@ FlowerDex is a Flutter application powered by Google Gemini AI that allows users
 	•	Confidence score from the AI model
 	•	Clean and responsive Flutter UI
 
-#🤖 Tech Stack
+# 🤖 Tech Stack
 
 Frontend	Backend	AI Model	
 Flutter	FastAPI	Gemini (Google Generative AI)	Python
 
-##🔧 Installation & Setup
+## 🔧 Installation & Setup
 
-##Prerequisites
+## Prerequisites
 	•	Flutter SDK installed: https://flutter.dev/docs/get-started/install
 	•	Python 3.10+
 	•	pip install fastapi uvicorn pillow google-generativeai
 
-###1. Clone the Repository
+### 1. Clone the Repository
 
 git clone https://github.com/your-username/flowerdex.git
 cd flowerdex
 
-###2. Setup Environment Variable
+### 2. Setup Environment Variable
 
 Set your Gemini API Key:
 
 export GOOGLE_API_KEY="your_gemini_api_key_here"
 
-###3. Run the Backend
+### 3. Run the Backend
 
 cd flower_app/flower_ai_backend
 uvicorn flower_server:app --reload
 
-###4. Run the Flutter App
+### 4. Run the Flutter App
 
 cd flower_app
 flutter run -d chrome
 
-##📷 Usage
+## 📷 Usage
 	1.	Click the image upload button.
 	2.	Choose or take a picture of a flower.
 	3.	Wait for the AI to return the flower name, confidence level, and a cool fact!
 
-##📚 Example Output
+## 📚 Example Output
 
 {
   "name": "Camellia japonica",
@@ -54,22 +54,22 @@ flutter run -d chrome
   "facts": "Camellia japonica flowers don't produce a scent. They rely on their vibrant color to attract pollinators like hummingbirds."
 }
 
-##🚫 Limitations
+## 🚫 Limitations
 	•	Requires internet connection for AI model
 	•	Prediction depends on image quality
 	•	Gemini API usage may have quota limits
 
-##🌟 Future Improvements
+## 🌟 Future Improvements
 	•	Offline flower detection model
 	•	User flower collection tracking
 	•	Flower location logging with maps
 
-##🙏 Acknowledgements
+## 🙏 Acknowledgements
 	•	Flutter
 	•	FastAPI
 	•	Gemini API
 	•	Oxford Flowers 102 Dataset
 
-##📁 License
+## 📁 License
 
 This project is licensed under the MIT License.
