@@ -5,7 +5,7 @@ class ResultPage extends StatelessWidget {
   final Uint8List image;
   final Map<String, dynamic> result;
 
-  ResultPage({required this.image, required this.result});
+  const ResultPage({super.key, required this.image, required this.result});
 
   String getFlowerName(String classLabel) {
     const flowerNames = {
@@ -21,27 +21,55 @@ class ResultPage extends StatelessWidget {
       'Class 9': 'Globe Thistle',
       // Add more mappings here as needed
     };
-    return flowerNames[classLabel] ?? classLabel;
+ 
+    if (flowerNames.containsKey(classLabel)) {
+      return flowerNames[classLabel]!;
+    }
+ 
+    // If it's already a flower name from Gemini, just return it
+    return classLabel;
+  }
+
+  String cleanMarkdown(String text) {
+    return text
+      .replaceAll(RegExp(r'[*_`#\-\\]'), '')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .replaceAll('\n', ' ')
+      .trim();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("🌼 DEBUG: result map = $result");
+    print("🧠 AI Fact: ${result['facts']}");
+
     return Scaffold(
       appBar: AppBar(title: Text("Result")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Image.memory(image, height: 250),
-            SizedBox(height: 20),
-            Text(
-              getFlowerName(result['name']?.toString() ?? 'Unknown'),
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-            Text("Confidence: ${result['confidence']?.toString() ?? '0'}%"),
-            SizedBox(height: 10),
-            Text(result['facts']?.toString() ?? 'No facts available.'),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.memory(image, height: 250),
+              SizedBox(height: 20),
+              Text(
+                cleanMarkdown(getFlowerName(result['name']?.toString() ?? 'Unknown')),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              Text("Confidence: ${cleanMarkdown(result['confidence']?.toString() ?? '0')}%"),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                  child: Text(
+                    "Fact: ${cleanMarkdown(result['facts']?.toString() ?? 'No fact available.')}",
+                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic, color: Colors.grey[700]),
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+            ],
+          ),
         ),
       ),
     );

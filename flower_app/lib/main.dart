@@ -4,6 +4,8 @@ import 'views/home.dart';
 void main() => runApp(FlowerDexApp());
 
 class FlowerDexApp extends StatelessWidget {
+  const FlowerDexApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
