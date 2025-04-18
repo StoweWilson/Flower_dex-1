@@ -15,12 +15,14 @@ class _HomePageState extends State<HomePage> {
   void pickImage() async {
     final image = await ImagePickerWeb.getImageAsBytes();
     if (image != null) {
+      print("✅ Image selected: ${image.lengthInBytes} bytes");
       setState(() {
         imageBytes = image;
       });
 
       try {
-        final result = await FlowerIdentifier.identifyFlower("fake_path.jpg");
+        final result = await FlowerIdentifier.identifyFlower(image);
+        print("✅ AI result: $result");
 
         if (!mounted) return;
 
@@ -31,12 +33,13 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       } catch (e) {
-        print('Error identifying flower: $e');
+        print("❌ Error identifying flower: $e");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to identify the flower.')),
+          SnackBar(content: Text('Error: $e')),
         );
       }
     } else {
+      print("⚠️ No image selected.");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('No image selected.')),
       );
